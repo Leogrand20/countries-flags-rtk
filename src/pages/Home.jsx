@@ -54,7 +54,11 @@ export const Home = () => {
     <>
       <Search onSearch={handleSearch} />
 
-      {isLoading ? <Preloader /> : <CountriesList />}
+      {isLoading ? (
+        <Preloader />
+      ) : (
+        <CountriesList filteredCountries={filteredCountries} />
+      )}
     </>
   )
 }
