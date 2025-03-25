@@ -5,6 +5,7 @@ import { Main } from '../../layouts/Main'
 import { Home } from '../../pages/Home'
 import { Details } from '../../pages/Details'
 import { NotFound } from '../../pages/NotFound'
+import { Error } from '../error/Error'
 
 import './App.css'
 
@@ -20,6 +21,8 @@ export const App = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Main>
+
+      <Error />
     </>
   )
 }

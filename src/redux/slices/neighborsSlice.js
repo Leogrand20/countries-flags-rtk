@@ -11,7 +11,7 @@ export const fetchNeighbors = createAsyncThunk(
   'neighbors/fetchNeighbors',
   async (codes) => {
     try {
-      const { data } = await axios(BASE_URL + 'alpha?codes=' + codes.join(','))
+      const { data } = await axios(BASE_URL + 'lpha?codes=' + codes.join(','))
 
       return data.map((country) => country.name.common)
     } catch (error) {}

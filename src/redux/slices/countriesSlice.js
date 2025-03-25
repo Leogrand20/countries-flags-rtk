@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import { BASE_URL } from '../../../config'
 import { createCountry } from '../../utils/createCountry'
+import { setError } from '../slices/errorSlice'
 
 const initialState = {
   countries: [],
@@ -11,14 +12,18 @@ const initialState = {
 
 export const fetchCountries = createAsyncThunk(
   'countries/fetchCountries',
-  async () => {
+  async (_, { dispatch, rejectWithValue }) => {
     try {
       const { data } = await axios(
         BASE_URL + 'all?fields=name,capital,flags,population,region',
       )
 
       return createCountry(data)
-    } catch (error) {}
+    } catch (error) {
+      dispatch(setError(error.message))
+
+      return rejectWithValue(error)
+    }
   },
 )
 
