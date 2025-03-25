@@ -21,7 +21,7 @@ export const CountriesItem = ({ flags, capital, name, population, region }) => {
         <div className={styles.countriesBodyText}>
           <p>
             <span className={styles.countriesBodySpan}>Population:</span>{' '}
-            {population}
+            {new Intl.NumberFormat('ru-RU').format(population)}
           </p>
           <p>
             <span className={styles.countriesBodySpan}>Region:</span> {region}

@@ -1,24 +1,29 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
+import { useSelector } from 'react-redux'
 
 import { getCountriesByCode } from '../../../api'
+import { selectCountry } from '../../redux/slices/currentCountrySlice'
 
 import styles from './Countries.module.css'
 
-export const CountryInfo = ({
-  name,
-  flags,
-  capital,
-  population,
-  region,
-  subregion,
-  tld = [],
-  currencies = {},
-  languages = {},
-  borders = [],
-}) => {
+export const CountryInfo = () => {
+  const country = useSelector(selectCountry)
   const navigate = useNavigate()
   const [neighbors, setNeighbors] = useState([])
+
+  const {
+    name,
+    flags,
+    capital,
+    population,
+    region,
+    subregion,
+    tld = [],
+    currencies = {},
+    languages = {},
+    borders = [],
+  } = country
 
   useEffect(() => {
     if (borders.length) {

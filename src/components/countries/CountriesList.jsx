@@ -1,8 +1,9 @@
 import { useSelector } from 'react-redux'
 
 import { CountriesItem } from './CountriesItem'
-import styles from './Countries.module.css'
 import { selectCountries } from '../../redux/slices/countriesSlice'
+
+import styles from './Countries.module.css'
 
 export const CountriesList = () => {
   const countries = useSelector(selectCountries)

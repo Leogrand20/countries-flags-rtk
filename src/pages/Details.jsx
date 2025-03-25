@@ -1,4 +1,4 @@
-import { useEffect, useState, useTransition } from 'react'
+import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 import { IoArrowBack } from 'react-icons/io5'
@@ -8,12 +8,10 @@ import { CountryInfo } from '../components/countries/CountryInfo'
 
 import {
   fetchCurrentCountry,
-  selectCountry,
   selectIsLoading,
 } from '../redux/slices/currentCountrySlice'
 
 export const Details = () => {
-  const country = useSelector(selectCountry)
   const { countryName } = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -29,7 +27,7 @@ export const Details = () => {
         <IoArrowBack /> Back
       </button>
 
-      {isLoading ? <Preloader /> : <CountryInfo {...country} />}
+      {isLoading ? <Preloader /> : <CountryInfo />}
     </>
   )
 }
