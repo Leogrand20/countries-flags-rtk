@@ -1,23 +1,25 @@
-import { useEffect, useState, useTransition } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Search } from '../components/search/Search'
 import { Preloader } from '../components/preloader/Preloader'
 import { CountriesList } from '../components/countries/CountriesList'
 
-import { fetchCountries, selectCountries } from '../redux/slices/countriesSlice'
+import {
+  fetchCountries,
+  selectCountries,
+  selectIsLoading,
+} from '../redux/slices/countriesSlice'
 
 export const Home = () => {
   const countries = useSelector(selectCountries)
   const [filteredCountries, setFilteredCountries] = useState(countries)
-  const [isPending, startTransition] = useTransition()
   const dispatch = useDispatch()
+  const isLoading = useSelector(selectIsLoading)
 
   useEffect(() => {
     if (!countries.length) {
-      startTransition(() => {
-        dispatch(fetchCountries())
-      })
+      dispatch(fetchCountries())
     }
   }, [])
 
@@ -52,7 +54,7 @@ export const Home = () => {
     <>
       <Search onSearch={handleSearch} />
 
-      {isPending ? (
+      {isLoading ? (
         <Preloader />
       ) : (
         <CountriesList countries={filteredCountries} />
