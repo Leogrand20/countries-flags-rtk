@@ -1,0 +1,25 @@
+import { Route, Routes } from 'react-router'
+
+import { Header } from '../../layouts/Header'
+import { Main } from '../../layouts/Main'
+import { Home } from '../../pages/Home'
+import { Details } from '../../pages/Details'
+import { NotFound } from '../../pages/NotFound'
+
+import './App.css'
+
+export const App = () => {
+  return (
+    <>
+      <Header />
+
+      <Main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/country/:countryName" element={<Details />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Main>
+    </>
+  )
+}
