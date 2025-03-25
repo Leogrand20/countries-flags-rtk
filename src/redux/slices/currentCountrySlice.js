@@ -4,7 +4,8 @@ import axios from 'axios'
 import { BASE_URL } from '../../../config'
 
 const initialState = {
-  country: null,
+  country: {},
+  isLoading: false,
 }
 
 export const fetchCurrentCountry = createAsyncThunk(
@@ -23,12 +24,22 @@ const currentCountrySlice = createSlice({
   initialState,
 
   extraReducers: ({ addCase }) => {
+    addCase(fetchCurrentCountry.pending, (state) => {
+      state.isLoading = true
+    })
+
     addCase(fetchCurrentCountry.fulfilled, (state, { payload }) => {
+      state.isLoading = false
       state.country = structuredClone(payload)
+    })
+
+    addCase(fetchCurrentCountry.rejected, (state) => {
+      state.isLoading = false
     })
   },
 })
 
 export const selectCountry = (state) => state.country.country
+export const selectIsLoading = (state) => state.country.isLoading
 
 export default currentCountrySlice.reducer

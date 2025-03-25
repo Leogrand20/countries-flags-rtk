@@ -9,19 +9,18 @@ import { CountryInfo } from '../components/countries/CountryInfo'
 import {
   fetchCurrentCountry,
   selectCountry,
+  selectIsLoading,
 } from '../redux/slices/currentCountrySlice'
 
 export const Details = () => {
   const country = useSelector(selectCountry)
   const { countryName } = useParams()
-  const [isPending, startTransition] = useTransition()
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const isLoading = useSelector(selectIsLoading)
 
   useEffect(() => {
-    startTransition(() => {
-      dispatch(fetchCurrentCountry(countryName))
-    })
+    dispatch(fetchCurrentCountry(countryName))
   }, [countryName])
 
   return (
@@ -30,7 +29,7 @@ export const Details = () => {
         <IoArrowBack /> Back
       </button>
 
-      {isPending ? <Preloader /> : <CountryInfo {...country} />}
+      {isLoading ? <Preloader /> : <CountryInfo {...country} />}
     </>
   )
 }
