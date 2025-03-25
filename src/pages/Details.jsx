@@ -1,23 +1,26 @@
 import { useEffect, useState, useTransition } from 'react'
 import { useNavigate, useParams } from 'react-router'
+import { useDispatch, useSelector } from 'react-redux'
 import { IoArrowBack } from 'react-icons/io5'
 
 import { Preloader } from '../components/preloader/Preloader'
 import { CountryInfo } from '../components/countries/CountryInfo'
 
-import { getCountryByName } from '../../api'
+import {
+  fetchCurrentCountry,
+  selectCountry,
+} from '../redux/slices/currentCountrySlice'
 
 export const Details = () => {
-  const [country, setCountry] = useState(null)
+  const country = useSelector(selectCountry)
   const { countryName } = useParams()
   const [isPending, startTransition] = useTransition()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     startTransition(() => {
-      getCountryByName(countryName).then((data) => {
-        setCountry(data[0])
-      })
+      dispatch(fetchCurrentCountry(countryName))
     })
   }, [countryName])
 

@@ -25,12 +25,6 @@ const countriesSlice = createSlice({
   name: 'countries',
   initialState,
 
-  reducers: {
-    setCountries: (state, { payload }) => {
-      state.countries = [...payload]
-    },
-  },
-
   extraReducers: ({ addCase }) => {
     addCase(fetchCountries.fulfilled, (state, { payload }) => {
       state.countries = [...payload]
