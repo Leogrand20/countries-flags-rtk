@@ -1,16 +1,20 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
-import { getCountriesByCode } from '../../../api'
 import { selectCountry } from '../../redux/slices/currentCountrySlice'
+import {
+  fetchNeighbors,
+  selectNeighbors,
+} from '../../redux/slices/neighborsSlice'
 
 import styles from './Countries.module.css'
 
 export const CountryInfo = () => {
   const country = useSelector(selectCountry)
   const navigate = useNavigate()
-  const [neighbors, setNeighbors] = useState([])
+  const dispatch = useDispatch()
+  const neighbors = useSelector(selectNeighbors)
 
   const {
     name,
@@ -27,9 +31,7 @@ export const CountryInfo = () => {
 
   useEffect(() => {
     if (borders.length) {
-      getCountriesByCode(borders).then((data) => {
-        setNeighbors(data.map((country) => country.name.common))
-      })
+      dispatch(fetchNeighbors(borders))
     }
   }, [borders])
 
