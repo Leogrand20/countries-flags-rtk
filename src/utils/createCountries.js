@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid'
 
-export const createCountry = (countries) =>
+export const createCountries = (countries) =>
   countries.map((country) => {
     return {
       ...country,

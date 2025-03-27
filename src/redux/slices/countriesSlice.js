@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import { BASE_URL } from '../../../config'
-import { createCountry } from '../../utils/createCountry'
+import { createCountries } from '../../utils/createCountries'
 import { setError } from '../slices/errorSlice'
 
 const initialState = {
@@ -18,7 +18,7 @@ export const fetchCountries = createAsyncThunk(
         BASE_URL + 'all?fields=name,capital,flags,population,region',
       )
 
-      return createCountry(data)
+      return createCountries(data)
     } catch (error) {
       dispatch(setError(error.message))
 
