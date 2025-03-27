@@ -1,18 +1,28 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { IoSearch } from 'react-icons/io5'
+
 import { CustomSelect } from './CustomSelect'
+import {
+  setSearchFilter,
+  setSortModeFilter,
+  selectSearchFilter,
+  selectRegionFilter,
+  selectSortModeFilter,
+} from '../../redux/slices/filterSlice'
+
 import styles from './Search.module.css'
 
 export const Search = ({ onSearch }) => {
-  const [search, setSearch] = useState('')
-  const [sortMode, setSortMode] = useState(null)
-  const [region, setRegion] = useState('')
+  const dispatch = useDispatch()
+
+  const searchFilter = useSelector(selectSearchFilter)
+  const regionFilter = useSelector(selectRegionFilter)
+  const sortModeFilter = useSelector(selectSortModeFilter)
 
   useEffect(() => {
-    const regionValue = region?.value || ''
-
-    onSearch(search, regionValue, sortMode)
-  }, [search, region, sortMode])
+    onSearch(searchFilter, regionFilter, sortModeFilter)
+  }, [searchFilter, regionFilter, sortModeFilter])
 
   return (
     <div className={styles.wrapper}>
@@ -25,8 +35,8 @@ export const Search = ({ onSearch }) => {
           id="search"
           placeholder="Search for a country..."
           className={styles.inputSearch}
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          value={searchFilter}
+          onChange={(e) => dispatch(setSearchFilter(e.target.value))}
         />
       </label>
 
@@ -35,21 +45,21 @@ export const Search = ({ onSearch }) => {
           type="radio"
           name="sort"
           value="asc"
-          checked={sortMode === 'asc'}
-          onChange={(e) => setSortMode(e.target.value)}
+          checked={sortModeFilter === 'asc'}
+          onChange={(e) => dispatch(setSortModeFilter(e.target.value))}
         />
         A-Z
         <input
           type="radio"
           name="sort"
           value="desc"
-          checked={sortMode === 'desc'}
-          onChange={(e) => setSortMode(e.target.value)}
+          checked={sortModeFilter === 'desc'}
+          onChange={(e) => dispatch(setSortModeFilter(e.target.value))}
         />
         Z-A
       </div>
 
-      <CustomSelect value={region} onChange={setRegion} />
+      <CustomSelect />
     </div>
   )
 }
