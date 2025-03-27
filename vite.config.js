@@ -99,7 +99,7 @@ export default defineConfig(({ command }) => {
       },
 
       server: {
-        port: 8000,
+        port: 8002,
         open: true,
       },
 
