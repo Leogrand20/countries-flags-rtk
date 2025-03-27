@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
 
-import { BASE_URL } from '../../../config'
+import { setError } from './errorSlice'
 
 const initialState = {
   neighbors: [],
@@ -9,12 +8,14 @@ const initialState = {
 
 export const fetchNeighbors = createAsyncThunk(
   'neighbors/fetchNeighbors',
-  async (codes) => {
+  async (codes, { dispatch, rejectWithValue, extra: api }) => {
     try {
-      const { data } = await axios(BASE_URL + 'alpha?codes=' + codes.join(','))
+      return api.getNeighborsCountries(codes)
+    } catch (error) {
+      dispatch(setError(error.message))
 
-      return data.map((country) => country.name.common)
-    } catch (error) {}
+      return rejectWithValue(error)
+    }
   },
 )
 
