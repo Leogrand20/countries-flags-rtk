@@ -3,26 +3,21 @@ import { useDispatch, useSelector } from 'react-redux'
 import { IoSearch } from 'react-icons/io5'
 
 import { CustomSelect } from './CustomSelect'
-import {
-  setSearchFilter,
-  setSortModeFilter,
-  selectSearchFilter,
-  selectRegionFilter,
-  selectSortModeFilter,
-} from '../../redux/slices/filterSlice'
+import { selectRegionFilter } from '../../redux/slices/filterSlice'
+
+import { useSearch } from '../../hooks/useSearch'
+import { useSortMode } from '../../hooks/useSortMode'
 
 import styles from './Search.module.css'
 
 export const Search = ({ onSearch }) => {
-  const dispatch = useDispatch()
-
-  const searchFilter = useSelector(selectSearchFilter)
-  const regionFilter = useSelector(selectRegionFilter)
-  const sortModeFilter = useSelector(selectSortModeFilter)
+  const [search, handleSetSearchFilter] = useSearch()
+  const [sortMode, handleSetSortModeFilter] = useSortMode()
+  const region = useSelector(selectRegionFilter)
 
   useEffect(() => {
-    onSearch(searchFilter, regionFilter, sortModeFilter)
-  }, [searchFilter, regionFilter, sortModeFilter])
+    onSearch(search, region, sortMode)
+  }, [search, region, sortMode])
 
   return (
     <div className={styles.wrapper}>
@@ -35,8 +30,8 @@ export const Search = ({ onSearch }) => {
           id="search"
           placeholder="Search for a country..."
           className={styles.inputSearch}
-          value={searchFilter}
-          onChange={(e) => dispatch(setSearchFilter(e.target.value))}
+          value={search}
+          onChange={handleSetSearchFilter}
         />
       </label>
 
@@ -45,16 +40,16 @@ export const Search = ({ onSearch }) => {
           type="radio"
           name="sort"
           value="asc"
-          checked={sortModeFilter === 'asc'}
-          onChange={(e) => dispatch(setSortModeFilter(e.target.value))}
+          checked={sortMode === 'asc'}
+          onChange={handleSetSortModeFilter}
         />
         A-Z
         <input
           type="radio"
           name="sort"
           value="desc"
-          checked={sortModeFilter === 'desc'}
-          onChange={(e) => dispatch(setSortModeFilter(e.target.value))}
+          checked={sortMode === 'desc'}
+          onChange={handleSetSortModeFilter}
         />
         Z-A
       </div>
