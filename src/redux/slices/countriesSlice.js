@@ -8,6 +8,7 @@ import { setError } from '../slices/errorSlice'
 
 const countriesAdapter = createEntityAdapter({
   selectId: (country) => country.id,
+  sortComparer: (a, b) => a.name.common.localeCompare(b.name.common),
 })
 
 export const fetchCountries = createAsyncThunk(
