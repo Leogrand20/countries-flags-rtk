@@ -1,10 +1,6 @@
 import Select from 'react-select'
-import { useDispatch, useSelector } from 'react-redux'
 
-import {
-  selectRegionFilter,
-  setRegionFilter,
-} from '../../redux/slices/filterSlice'
+import { useRegion } from '../../hooks/useRegion'
 
 import styles from './Search.module.css'
 
@@ -17,8 +13,7 @@ const options = [
 ]
 
 export const CustomSelect = () => {
-  const region = useSelector(selectRegionFilter)
-  const dispatch = useDispatch()
+  const [region, handleSetRegion] = useRegion()
 
   return (
     <Select
@@ -26,7 +21,7 @@ export const CustomSelect = () => {
       className={styles.select}
       options={options}
       value={region}
-      onChange={(reg) => dispatch(setRegionFilter(reg?.value || ''))}
+      onChange={handleSetRegion}
       isClearable
       isSearchable={false}
       styles={{
