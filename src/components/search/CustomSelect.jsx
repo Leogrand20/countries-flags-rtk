@@ -24,8 +24,8 @@ export const CustomSelect = () => {
     <Select
       placeholder="Filter by Region"
       className={styles.select}
-      options={Object.values(options)}
-      value={options[region]}
+      options={options}
+      value={region}
       onChange={(reg) => dispatch(setRegionFilter(reg?.value || ''))}
       isClearable
       isSearchable={false}
