@@ -7,12 +7,12 @@ import { CountriesList } from '../components/countries/CountriesList'
 
 import {
   fetchCountries,
-  selectCountries,
   selectIsLoading,
+  countriesSelectors,
 } from '../redux/slices/countriesSlice'
 
 export const Home = () => {
-  const countries = useSelector(selectCountries)
+  const countries = useSelector(countriesSelectors.selectAll)
   const [filteredCountries, setFilteredCountries] = useState(countries)
   const dispatch = useDispatch()
   const isLoading = useSelector(selectIsLoading)

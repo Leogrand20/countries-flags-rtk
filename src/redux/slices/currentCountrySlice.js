@@ -18,6 +18,14 @@ export const fetchCurrentCountry = createAsyncThunk(
       return rejectWithValue(error)
     }
   },
+
+  {
+    condition: (_, { getState }) => {
+      const { isLoading } = getState().country
+
+      if (isLoading) return false
+    },
+  },
 )
 
 const currentCountrySlice = createSlice({
@@ -31,6 +39,7 @@ const currentCountrySlice = createSlice({
 
     addCase(fetchCurrentCountry.fulfilled, (state, { payload }) => {
       state.isLoading = false
+
       state.country = structuredClone(payload)
     })
 

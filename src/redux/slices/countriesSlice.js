@@ -1,11 +1,14 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import {
+  createSlice,
+  createAsyncThunk,
+  createEntityAdapter,
+} from '@reduxjs/toolkit'
 
 import { setError } from '../slices/errorSlice'
 
-const initialState = {
-  countries: [],
-  isLoading: false,
-}
+const countriesAdapter = createEntityAdapter({
+  selectId: (country) => country.id,
+})
 
 export const fetchCountries = createAsyncThunk(
   'countries/fetchCountries',
@@ -29,7 +32,10 @@ export const fetchCountries = createAsyncThunk(
 
 const countriesSlice = createSlice({
   name: 'countries',
-  initialState,
+  initialState: countriesAdapter.getInitialState({
+    countries: [],
+    isLoading: false,
+  }),
 
   extraReducers: ({ addCase }) => {
     addCase(fetchCountries.pending, (state) => {
@@ -38,7 +44,8 @@ const countriesSlice = createSlice({
 
     addCase(fetchCountries.fulfilled, (state, { payload }) => {
       state.isLoading = false
-      state.countries = [...payload]
+
+      countriesAdapter.addMany(state, [...payload])
     })
 
     addCase(fetchCountries.rejected, (state) => {
@@ -47,7 +54,10 @@ const countriesSlice = createSlice({
   },
 })
 
-export const selectCountries = (state) => state.countries.countries
 export const selectIsLoading = (state) => state.countries.isLoading
+
+export const countriesSelectors = countriesAdapter.getSelectors(
+  (state) => state.countries,
+)
 
 export default countriesSlice.reducer
