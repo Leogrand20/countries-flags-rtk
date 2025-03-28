@@ -11,6 +11,10 @@ const countriesAdapter = createEntityAdapter({
   sortComparer: (a, b) => a.name.common.localeCompare(b.name.common),
 })
 
+const initialState = countriesAdapter.getInitialState({
+  isLoading: false,
+})
+
 export const fetchCountries = createAsyncThunk(
   'countries/fetchCountries',
   async (_, { dispatch, rejectWithValue, extra: api }) => {
@@ -33,10 +37,7 @@ export const fetchCountries = createAsyncThunk(
 
 const countriesSlice = createSlice({
   name: 'countries',
-  initialState: countriesAdapter.getInitialState({
-    countries: [],
-    isLoading: false,
-  }),
+  initialState,
 
   extraReducers: ({ addCase }) => {
     addCase(fetchCountries.pending, (state) => {
@@ -46,7 +47,7 @@ const countriesSlice = createSlice({
     addCase(fetchCountries.fulfilled, (state, { payload }) => {
       state.isLoading = false
 
-      countriesAdapter.addMany(state, [...payload])
+      countriesAdapter.setAll(state, [...payload])
     })
 
     addCase(fetchCountries.rejected, (state) => {
