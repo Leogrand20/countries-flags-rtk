@@ -1,5 +1,5 @@
 {
-  "name": "countries-flags",
+  "name": "countries-flags-redux",
   "private": true,
   "version": "1.0.0",
   "author": {
@@ -7,7 +7,7 @@
     "email": "leograndprix@gmail.com",
     "url": "https://leograndprix.ru"
   },
-  "homepage": "https://github.com/Leogrand20/countries-flags",
+  "homepage": "https://github.com/Leogrand20/countries-flags-redux",
   "categories": [
     "Other"
   ],
