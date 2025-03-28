@@ -20,7 +20,7 @@ const getCountryByName = async (countryName) => {
 const getNeighborsCountries = async (codes) => {
   const { data } = await axios(BASE_URL + 'alpha?codes=' + codes.join(','))
 
-  return data.map((country) => country.name.common)
+  return data.map((country) => country.name.common).toSorted()
 }
 
 export { getAllCountries, getCountryByName, getNeighborsCountries }
