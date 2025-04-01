@@ -53,7 +53,7 @@ export const CountryInfo = () => {
             </li>
             <li className={styles.countryDataListItem}>
               <strong>Population</strong>{' '}
-              {new Intl.NumberFormat('ru-RU').format(population)}
+              {population}
             </li>
             <li className={styles.countryDataListItem}>
               <strong>Region:</strong> {region}
