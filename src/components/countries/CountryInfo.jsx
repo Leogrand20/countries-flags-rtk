@@ -11,9 +11,9 @@ import {
 import styles from './Countries.module.css'
 
 export const CountryInfo = () => {
-  const country = useSelector(selectCountry)
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const country = useSelector(selectCountry)
   const neighbors = useSelector(selectNeighbors)
 
   const {
@@ -52,8 +52,7 @@ export const CountryInfo = () => {
               <strong>Native Name:</strong> {name?.official}
             </li>
             <li className={styles.countryDataListItem}>
-              <strong>Population</strong>{' '}
-              {population}
+              <strong>Population</strong> {population}
             </li>
             <li className={styles.countryDataListItem}>
               <strong>Region:</strong> {region}

@@ -8,14 +8,14 @@ import { CountriesList } from '../components/countries/CountriesList'
 import {
   fetchCountries,
   selectIsLoading,
-  countriesSelectors,
+  selectAll,
 } from '../redux/slices/countriesSlice'
 
 export const Home = () => {
-  const countries = useSelector(countriesSelectors.selectAll)
+  const countries = useSelector(selectAll)
   const [filteredCountries, setFilteredCountries] = useState(countries)
-  const dispatch = useDispatch()
   const isLoading = useSelector(selectIsLoading)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (!countries.length) {
@@ -57,7 +57,7 @@ export const Home = () => {
       {isLoading ? (
         <Preloader />
       ) : (
-        <CountriesList filteredCountries={filteredCountries} />
+        <CountriesList countries={filteredCountries} />
       )}
     </>
   )

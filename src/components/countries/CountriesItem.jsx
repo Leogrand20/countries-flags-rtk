@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router'
+
 import styles from './Countries.module.css'
 
 export const CountriesItem = ({ flags, capital, name, population, region }) => {

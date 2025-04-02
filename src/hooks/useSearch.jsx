@@ -7,7 +7,6 @@ import {
 
 export const useSearch = () => {
   const dispatch = useDispatch()
-
   const search = useSelector(selectSearchFilter)
 
   const handleSetSearchFilter = (e) => {

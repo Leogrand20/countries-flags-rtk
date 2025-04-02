@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { IoSearch } from 'react-icons/io5'
 
 import { CustomSelect } from './CustomSelect'

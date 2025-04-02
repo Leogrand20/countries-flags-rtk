@@ -58,7 +58,7 @@ const countriesSlice = createSlice({
 
 export const selectIsLoading = (state) => state.countries.isLoading
 
-export const countriesSelectors = countriesAdapter.getSelectors(
+export const { selectAll } = countriesAdapter.getSelectors(
   (state) => state.countries,
 )
 

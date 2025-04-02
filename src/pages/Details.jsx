@@ -13,9 +13,9 @@ import {
 
 export const Details = () => {
   const { countryName } = useParams()
+  const isLoading = useSelector(selectIsLoading)
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const isLoading = useSelector(selectIsLoading)
 
   useEffect(() => {
     dispatch(fetchCurrentCountry(countryName))

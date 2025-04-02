@@ -7,7 +7,6 @@ import {
 
 export const useSortMode = () => {
   const dispatch = useDispatch()
-
   const sortMode = useSelector(selectSortModeFilter)
 
   const handleSetSortModeFilter = (e) => {
