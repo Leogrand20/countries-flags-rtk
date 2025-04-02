@@ -16,10 +16,10 @@
   "type": "module",
   "scripts": {
     "c": "rd /s /q dist",
-    "d": "vite --host",
-    "b": "vite build",
-    "bp": "vite build&&vite preview --host --port 4000",
-    "p": "vite preview --host --port 4000"
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host --port 4000",
+    "bp": "vite build&&vite preview --host --port 4000"
   },
   "devDependencies": {
     "@eslint/css": "^0.6.0",

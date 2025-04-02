@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 import { BASE_URL } from './config'
-import { createCountries, createCountry } from './src/utils/createCountries'
+import { createCountries } from '../utils/createCountries'
+import { createCountry } from '../utils/createCountry'
 
 const getAllCountries = async () => {
   const { data } = await axios(

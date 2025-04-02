@@ -6,7 +6,7 @@ import neighborsReducer from './slices/neighborsSlice'
 import errorReducer from './slices/errorSlice'
 import filterReducer from './slices/filterSlice'
 
-import * as api from '../../api'
+import * as api from '../api/api'
 
 export const store = configureStore({
   reducer: {
