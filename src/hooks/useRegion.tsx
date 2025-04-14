@@ -8,7 +8,7 @@ export const useRegion = () => {
   const dispatch = useDispatch()
   const region = useSelector(selectRegionFilter)
 
-  const handleSetRegion = (reg) => {
+  const handleSetRegion = (reg: HTMLSelectElement) => {
     dispatch(setRegionFilter(reg?.value || ''))
   }
 
