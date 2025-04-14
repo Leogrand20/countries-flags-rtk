@@ -37,18 +37,33 @@ export const Home: FC = () => {
     let data = [...countries]
 
     if (search) {
-      data = data.filter((item) => RegExp(search, 'i').test(item.name.common))
+      data = data.filter(
+        (country) =>
+          country.name && RegExp(search, 'i').test(country.name.common),
+      )
     }
 
     if (region) {
-      data = data.filter((item) => item.region.includes(region))
+      data = data.filter((country) => country.region?.includes(region))
     }
 
     if (sortMode) {
       data = data.toSorted((a, b) => {
-        if (sortMode === 'asc' && a.name.common > b.name.common) return 1
+        if (
+          a.name &&
+          b.name &&
+          sortMode === 'asc' &&
+          a.name.common > b.name.common
+        )
+          return 1
         else if (sortMode === 'asc') return -1
-        else if (sortMode === 'desc' && a.name.common < b.name.common) return 1
+        else if (
+          a.name &&
+          b.name &&
+          sortMode === 'desc' &&
+          a.name.common < b.name.common
+        )
+          return 1
         else return -1
       })
     }
