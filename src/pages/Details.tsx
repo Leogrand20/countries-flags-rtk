@@ -6,10 +6,8 @@ import { IoArrowBack } from 'react-icons/io5'
 import { Preloader } from '../components/preloader/Preloader'
 import { CountryInfo } from '../components/countries/CountryInfo'
 
-import {
-  fetchCurrentCountry,
-  selectIsLoading,
-} from '../redux/slices/currentCountrySlice'
+import { fetchCountry } from '../redux/slices/countrySlice'
+import { selectIsLoading } from '../redux/selectors/country-selectors'
 
 export const Details: FC = () => {
   const { countryName } = useParams()
@@ -18,7 +16,7 @@ export const Details: FC = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchCurrentCountry(countryName))
+    dispatch(fetchCountry(countryName))
   }, [countryName])
 
   return (

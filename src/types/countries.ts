@@ -43,6 +43,11 @@ export type CountriesSlice = {
   isLoading: boolean
 }
 
+export type CountrySlice = {
+  country: Country
+  isLoading: boolean
+}
+
 export type CountriesItemProps = Pick<
   Country,
   'flags' | 'capital' | 'name' | 'population' | 'region'

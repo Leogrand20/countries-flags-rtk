@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import axios from 'axios'
 
 import countriesReducer from './slices/countriesSlice'
-import countryReducer from './slices/currentCountrySlice'
+import countryReducer from './slices/countrySlice'
 import neighborsReducer from './slices/neighborsSlice'
 import errorReducer from './slices/errorSlice'
 import filterReducer from './slices/filterSlice'
@@ -27,8 +27,6 @@ export const store = configureStore({
           api,
         },
       },
-
-      serializableCheck: false,
     }),
 })
 
