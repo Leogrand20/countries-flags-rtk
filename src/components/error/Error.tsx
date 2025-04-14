@@ -1,11 +1,11 @@
-import { useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ToastContainer, toast, Bounce } from 'react-toastify'
 
 import { clearError, selectError } from '../../redux/slices/errorSlice'
 
-export const Error = () => {
-  const errorMessage = useSelector(selectError)
+export const Error: FC = () => {
+  const errorMessage: string = useSelector(selectError)
   const dispatch = useDispatch()
 
   useEffect(() => {
