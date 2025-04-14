@@ -11,7 +11,7 @@ import {
   selectRegionFilter,
   selectSearchFilter,
   selectSortModeFilter,
-} from '../redux/slices/filterSlice'
+} from '../redux/selectors/filter-selectors'
 
 import {
   selectCountries,

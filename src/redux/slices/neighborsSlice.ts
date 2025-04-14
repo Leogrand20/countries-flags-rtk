@@ -17,7 +17,7 @@ export const fetchNeighbors = createAsyncThunk<
   async (codes, { dispatch, rejectWithValue, extra: { api, client } }) => {
     try {
       return (await client.get(api.getNeighborsCountries(codes))).data
-        .map((country: Country) => country.name.common)
+        .map((country: Country) => country.name?.common)
         .toSorted()
     } catch (error) {
       if (error instanceof Error) {

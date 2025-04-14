@@ -1,9 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux'
 
-import {
-  selectRegionFilter,
-  setRegionFilter,
-} from '../redux/slices/filterSlice'
+import { setRegionFilter } from '../redux/slices/filterSlice'
+
+import { selectRegionFilter } from '../redux/selectors/filter-selectors'
 
 export const useRegion = () => {
   const dispatch = useDispatch()

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { IoSearch } from 'react-icons/io5'
 
 import { CustomSelect } from './CustomSelect'
-import { selectRegionFilter } from '../../redux/slices/filterSlice'
+import { selectRegionFilter } from '../../redux/selectors/filter-selectors'
 
 import { useSearch } from '../../hooks/useSearch'
 import { useSortMode } from '../../hooks/useSortMode'

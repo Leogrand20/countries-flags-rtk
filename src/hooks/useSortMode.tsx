@@ -1,9 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux'
 
-import {
-  setSortModeFilter,
-  selectSortModeFilter,
-} from '../redux/slices/filterSlice'
+import { setSortModeFilter } from '../redux/slices/filterSlice'
+
+import { selectSortModeFilter } from '../redux/selectors/filter-selectors'
 
 export const useSortMode = () => {
   const dispatch = useDispatch()
