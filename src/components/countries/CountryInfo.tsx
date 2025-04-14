@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -8,7 +8,7 @@ import { selectNeighbors } from '../../redux/selectors/neighbors-selectors'
 
 import styles from './Countries.module.css'
 
-export const CountryInfo = () => {
+export const CountryInfo: FC = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const country = useSelector(selectCountry)
@@ -27,7 +27,11 @@ export const CountryInfo = () => {
     borders = [],
   } = country
 
-  const formattedPopulation = new Intl.NumberFormat('ru-Ru').format(population)
+  let formattedPopulation = ''
+
+  if (population) {
+    formattedPopulation = new Intl.NumberFormat('ru-Ru').format(population)
+  }
 
   useEffect(() => {
     if (borders.length) {
