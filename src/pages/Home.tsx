@@ -8,15 +8,24 @@ import { CountriesList } from '../components/countries/CountriesList'
 import { fetchCountries } from '../redux/slices/countriesSlice'
 
 import {
+  selectRegionFilter,
+  selectSearchFilter,
+  selectSortModeFilter,
+} from '../redux/slices/filterSlice'
+
+import {
   selectCountries,
   selectIsLoading,
 } from '../redux/selectors/countries-selectors'
 
 export const Home: FC = () => {
+  const dispatch = useDispatch()
   const countries = useSelector(selectCountries)
   const [filteredCountries, setFilteredCountries] = useState(countries)
   const isLoading = useSelector(selectIsLoading)
-  const dispatch = useDispatch()
+  const search = useSelector(selectSearchFilter)
+  const region = useSelector(selectRegionFilter)
+  const sortMode = useSelector(selectSortModeFilter)
 
   useEffect(() => {
     if (!countries.length) {
@@ -24,7 +33,7 @@ export const Home: FC = () => {
     }
   }, [])
 
-  const handleSearch = (search, region, sortMode) => {
+  const handleSearch = (search: string, region: string, sortMode: string) => {
     let data = [...countries]
 
     if (search) {
@@ -48,7 +57,7 @@ export const Home: FC = () => {
   }
 
   useEffect(() => {
-    handleSearch()
+    handleSearch(search, region, sortMode)
   }, [countries])
 
   return (

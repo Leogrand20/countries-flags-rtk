@@ -13,16 +13,24 @@ const initialState: CountriesSlice = {
 export const fetchCountries = createAsyncThunk<
   Countries,
   undefined,
-  { state: { countries: CountriesSlice }; extra: Extra }
+  {
+    state: { countries: CountriesSlice }
+    extra: Extra
+    rejectWithValue: string
+  }
 >(
   'countries/fetchCountries',
   async (_, { dispatch, rejectWithValue, extra: { api, client } }) => {
     try {
       return (await client.get(api.getAllCountries)).data
     } catch (error) {
-      dispatch(setError(error))
+      if (error instanceof Error) {
+        dispatch(setError(error.message))
 
-      return rejectWithValue(error)
+        return rejectWithValue(error)
+      }
+
+      return rejectWithValue('Unknown error')
     }
   },
   {
