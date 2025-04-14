@@ -5,17 +5,20 @@ import { Search } from '../components/search/Search'
 import { Preloader } from '../components/preloader/Preloader'
 import { CountriesList } from '../components/countries/CountriesList'
 
+import { fetchCountries } from '../redux/slices/countriesSlice'
+
 import {
-  fetchCountries,
+  selectCountries,
   selectIsLoading,
-  selectAll,
-} from '../redux/slices/countriesSlice'
+} from '../redux/selectors/countries-selectors'
 
 export const Home: FC = () => {
-  const countries = useSelector(selectAll)
+  const countries = useSelector(selectCountries)
   const [filteredCountries, setFilteredCountries] = useState(countries)
   const isLoading = useSelector(selectIsLoading)
   const dispatch = useDispatch()
+
+  console.log(countries)
 
   useEffect(() => {
     if (!countries.length) {

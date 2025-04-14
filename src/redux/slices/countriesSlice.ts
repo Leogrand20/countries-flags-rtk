@@ -1,27 +1,25 @@
-import {
-  createSlice,
-  createAsyncThunk,
-  createEntityAdapter,
-} from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import { setError } from './errorSlice'
+import { Countries, CountriesSlice } from '../../types/countries'
+import { Extra } from '../../types/extra'
 
-const countriesAdapter = createEntityAdapter({
-  selectId: (country) => country.id,
-  sortComparer: (a, b) => a.name.common.localeCompare(b.name.common),
-})
-
-const initialState = countriesAdapter.getInitialState({
+const initialState: CountriesSlice = {
+  countries: [],
   isLoading: false,
-})
+}
 
-export const fetchCountries = createAsyncThunk(
+export const fetchCountries = createAsyncThunk<
+  Countries,
+  undefined,
+  { state: { countries: CountriesSlice }; extra: Extra }
+>(
   'countries/fetchCountries',
-  async (_, { dispatch, rejectWithValue, extra: api }) => {
+  async (_, { dispatch, rejectWithValue, extra: { api, client } }) => {
     try {
-      return api.getAllCountries()
+      return (await client.get(api.getAllCountries)).data
     } catch (error) {
-      dispatch(setError(error.message))
+      dispatch(setError(error))
 
       return rejectWithValue(error)
     }
@@ -39,6 +37,8 @@ const countriesSlice = createSlice({
   name: 'countries',
   initialState,
 
+  reducers: {},
+
   extraReducers: ({ addCase }) => {
     addCase(fetchCountries.pending, (state) => {
       state.isLoading = true
@@ -47,7 +47,7 @@ const countriesSlice = createSlice({
     addCase(fetchCountries.fulfilled, (state, { payload }) => {
       state.isLoading = false
 
-      countriesAdapter.setAll(state, [...payload])
+      state.countries = payload
     })
 
     addCase(fetchCountries.rejected, (state) => {
@@ -55,11 +55,5 @@ const countriesSlice = createSlice({
     })
   },
 })
-
-export const selectIsLoading = (state) => state.countries.isLoading
-
-export const { selectAll } = countriesAdapter.getSelectors(
-  (state) => state.countries,
-)
 
 export default countriesSlice.reducer
