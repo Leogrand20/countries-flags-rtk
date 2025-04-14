@@ -37,3 +37,8 @@ export interface Country {
 }
 
 export type Countries = Country[]
+
+export type CountriesItemProps = Pick<
+  Country,
+  'flags' | 'capital' | 'name' | 'population' | 'region'
+>
