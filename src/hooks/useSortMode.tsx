@@ -1,3 +1,4 @@
+import { ChangeEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { setSortModeFilter } from '../redux/slices/filterSlice'
@@ -8,7 +9,7 @@ export const useSortMode = () => {
   const dispatch = useDispatch()
   const sortMode = useSelector(selectSortModeFilter)
 
-  const handleSetSortModeFilter = (e) => {
+  const handleSetSortModeFilter = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setSortModeFilter(e.target.value))
   }
 
