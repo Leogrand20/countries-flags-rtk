@@ -12,9 +12,14 @@ export const CountriesItem: FC<CountriesItemProps> = ({
   population,
   region,
 }) => {
-  const countryName = name.common.toLowerCase().split(' ').join('?')
+  const countryName = name?.common.toLowerCase().split(' ').join('?')
   const navigate = useNavigate()
-  const formattedPopulation = new Intl.NumberFormat('ru-Ru').format(population)
+
+  let formattedPopulation = ''
+
+  if (population) {
+    formattedPopulation = new Intl.NumberFormat('ru-Ru').format(population)
+  }
 
   return (
     <article
@@ -23,12 +28,12 @@ export const CountriesItem: FC<CountriesItemProps> = ({
     >
       <img
         className={styles['countriesItemImg']}
-        src={flags.png}
-        alt={flags.alt}
+        src={flags?.png}
+        alt={flags?.alt}
       />
 
       <div className={styles['countriesItemBody']}>
-        <h3 className={styles['countriesBodyTitle']}>{name.common}</h3>
+        <h3 className={styles['countriesBodyTitle']}>{name?.common}</h3>
         <div className={styles['countriesBodyText']}>
           <p>
             <span className={styles['countriesBodySpan']}>Population:</span>{' '}
@@ -40,7 +45,7 @@ export const CountriesItem: FC<CountriesItemProps> = ({
           </p>
           <p>
             <span className={styles['countriesBodySpan']}>Capital:</span>{' '}
-            {capital[0]}
+            {capital && capital[0]}
           </p>
         </div>
       </div>
