@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Search } from '../components/search/Search'
@@ -11,7 +11,7 @@ import {
   selectAll,
 } from '../redux/slices/countriesSlice'
 
-export const Home = () => {
+export const Home: FC = () => {
   const countries = useSelector(selectAll)
   const [filteredCountries, setFilteredCountries] = useState(countries)
   const isLoading = useSelector(selectIsLoading)

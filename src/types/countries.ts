@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import { Region } from './regions'
 
 interface Flags {
@@ -37,3 +38,7 @@ export interface Country {
 }
 
 export type Countries = Country[]
+
+export type MainProps = {
+  children: ReactNode
+}

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 import { IoArrowBack } from 'react-icons/io5'
@@ -11,7 +11,7 @@ import {
   selectIsLoading,
 } from '../redux/slices/currentCountrySlice'
 
-export const Details = () => {
+export const Details: FC = () => {
   const { countryName } = useParams()
   const isLoading = useSelector(selectIsLoading)
   const navigate = useNavigate()
