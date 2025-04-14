@@ -5,7 +5,7 @@ import { createCountries } from '../utils/createCountries'
 import { createCountry } from '../utils/createCountry'
 import { Countries, Country } from '../types/countries'
 
-const getAllCountries = async (): Promise<Countries> => {
+const getAllCountries = async () => {
   const { data } = await axios(
     BASE_URL + 'all?fields=name,capital,flags,population,region',
   )
@@ -13,7 +13,7 @@ const getAllCountries = async (): Promise<Countries> => {
   return createCountries(data)
 }
 
-const getCountryByName = async (countryName: string): Promise<Country> => {
+const getCountryByName = async (countryName: string) => {
   const { data } = await axios(BASE_URL + 'name/' + countryName)
 
   return createCountry(data[0])
