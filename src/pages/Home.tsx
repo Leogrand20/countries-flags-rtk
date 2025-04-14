@@ -72,7 +72,7 @@ export const Home: FC = () => {
   }
 
   useEffect(() => {
-    handleSearch(search, region, sortMode)
+    handleSearch(search, region, sortMode!)
   }, [countries])
 
   return (
