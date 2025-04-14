@@ -22,8 +22,8 @@ interface Languages {
 
 export type ID = string | number
 
-export interface Country {
-  id?: ID
+export type Country = Partial<{
+  id: ID
   flags: Flags
   name: Name
   capital: string[]
@@ -34,7 +34,7 @@ export interface Country {
   currencies: Currencies
   borders: string[]
   languages: Languages
-}
+}>
 
 export type Countries = Country[]
 
