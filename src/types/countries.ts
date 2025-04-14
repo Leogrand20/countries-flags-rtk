@@ -20,7 +20,10 @@ interface Languages {
   [key: string]: string
 }
 
+export type ID = string | number
+
 export interface Country {
+  id?: ID
   flags: Flags
   name: Name
   capital: string[]
