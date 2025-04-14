@@ -5,9 +5,10 @@ import { Provider } from 'react-redux'
 
 import { store } from './src/redux/store'
 import { App } from './src/components/app/App'
+
 import '@css/index.css'
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>

@@ -4,7 +4,7 @@ import {
   createEntityAdapter,
 } from '@reduxjs/toolkit'
 
-import { setError } from '../slices/errorSlice'
+import { setError } from './errorSlice'
 
 const countriesAdapter = createEntityAdapter({
   selectId: (country) => country.id,

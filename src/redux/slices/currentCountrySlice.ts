@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-import { setError } from '../slices/errorSlice'
+import { setError } from './errorSlice'
 
 const initialState = {
   country: {},
