@@ -6,8 +6,8 @@ export const CountriesList = ({ countries }) => {
   return (
     <>
       <section className={styles.countriesItems}>
-        {countries.map((country, id) => (
-          <CountriesItem key={id} {...country} />
+        {countries.map((country) => (
+          <CountriesItem key={country.id} {...country} />
         ))}
       </section>
     </>

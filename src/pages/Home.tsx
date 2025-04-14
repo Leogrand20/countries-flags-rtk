@@ -18,8 +18,6 @@ export const Home: FC = () => {
   const isLoading = useSelector(selectIsLoading)
   const dispatch = useDispatch()
 
-  console.log(countries)
-
   useEffect(() => {
     if (!countries.length) {
       dispatch(fetchCountries())

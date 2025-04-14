@@ -29,6 +29,8 @@ export const CountryInfo = () => {
     borders = [],
   } = country
 
+  const formattedPopulation = new Intl.NumberFormat('ru-Ru').format(population)
+
   useEffect(() => {
     if (borders.length) {
       dispatch(fetchNeighbors(borders))
@@ -52,7 +54,7 @@ export const CountryInfo = () => {
               <strong>Native Name:</strong> {name?.official}
             </li>
             <li className={styles.countryDataListItem}>
-              <strong>Population</strong> {population}
+              <strong>Population</strong> {formattedPopulation}
             </li>
             <li className={styles.countryDataListItem}>
               <strong>Region:</strong> {region}

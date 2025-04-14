@@ -3,6 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { setError } from './errorSlice'
 import { Countries, CountriesSlice } from '../../types/countries'
 import { Extra } from '../../types/extra'
+import { createCountries } from '../../utils/createCountries'
 
 const initialState: CountriesSlice = {
   countries: [],
@@ -47,7 +48,7 @@ const countriesSlice = createSlice({
     addCase(fetchCountries.fulfilled, (state, { payload }) => {
       state.isLoading = false
 
-      state.countries = payload
+      state.countries = createCountries(payload)
     })
 
     addCase(fetchCountries.rejected, (state) => {

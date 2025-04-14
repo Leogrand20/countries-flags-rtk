@@ -14,6 +14,7 @@ export const CountriesItem: FC<CountriesItemProps> = ({
 }) => {
   const countryName = name.common.toLowerCase().split(' ').join('?')
   const navigate = useNavigate()
+  const formattedPopulation = new Intl.NumberFormat('ru-Ru').format(population)
 
   return (
     <article
@@ -31,7 +32,7 @@ export const CountriesItem: FC<CountriesItemProps> = ({
         <div className={styles['countriesBodyText']}>
           <p>
             <span className={styles['countriesBodySpan']}>Population:</span>{' '}
-            {population}
+            {formattedPopulation}
           </p>
           <p>
             <span className={styles['countriesBodySpan']}>Region:</span>{' '}
