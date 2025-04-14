@@ -1,7 +1,3 @@
-import axios from 'axios'
-
-import { Countries, Country } from '../types/countries'
-
 const BASE_URL: string = 'https://restcountries.com/v3.1/'
 
 const getAllCountries =
@@ -10,10 +6,7 @@ const getAllCountries =
 const getCountryByName = (countryName: string) =>
   BASE_URL + 'name/' + countryName
 
-const getNeighborsCountries = async (codes: string[]): Promise<Countries> => {
-  const { data } = await axios(BASE_URL + 'alpha?codes=' + codes.join(','))
-
-  return data.map((country: Country) => country.name.common).toSorted()
-}
+const getNeighborsCountries = (codes: string[]) =>
+  BASE_URL + 'alpha?codes=' + codes.join(',')
 
 export { getAllCountries, getCountryByName, getNeighborsCountries }

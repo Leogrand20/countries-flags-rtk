@@ -3,11 +3,8 @@ import { useNavigate } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { selectCountry } from '../../redux/selectors/country-selectors'
-
-import {
-  fetchNeighbors,
-  selectNeighbors,
-} from '../../redux/slices/neighborsSlice'
+import { fetchNeighbors } from '../../redux/slices/neighborsSlice'
+import { selectNeighbors } from '../../redux/selectors/neighbors-selectors'
 
 import styles from './Countries.module.css'
 

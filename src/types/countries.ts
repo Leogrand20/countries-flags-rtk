@@ -48,6 +48,10 @@ export type CountrySlice = {
   isLoading: boolean
 }
 
+export type NeighborsSlice = {
+  neighbors: string[]
+}
+
 export type CountriesItemProps = Pick<
   Country,
   'flags' | 'capital' | 'name' | 'population' | 'region'
