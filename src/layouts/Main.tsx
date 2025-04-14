@@ -1,5 +1,6 @@
 import { FC } from 'react'
-import { MainProps } from '../types/countries'
+
+import { MainProps } from '../types/main'
 
 export const Main: FC<MainProps> = ({ children }) => {
   return (
