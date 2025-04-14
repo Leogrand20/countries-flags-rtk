@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, FC } from 'react'
 import { Link } from 'react-router'
 import { IoMoon } from 'react-icons/io5'
 
 import styles from './Header.module.css'
 
-export const Header = () => {
-  const originalTheme = localStorage.getItem('theme') || 'light'
-  const [theme, setTheme] = useState(originalTheme)
+export const Header: FC = () => {
+  const originalTheme: string = localStorage.getItem('theme') || 'light'
+  const [theme, setTheme] = useState<string>(originalTheme)
 
-  const toggleTheme = () => {
+  const toggleTheme = (): void => {
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
 
@@ -20,15 +20,15 @@ export const Header = () => {
   return (
     <header className="header">
       <div className="container">
-        <div className={styles.wrapper}>
-          <Link to="/" className={styles.titleLink}>
+        <div className={styles['wrapper']}>
+          <Link to="/" className={styles['titleLink']}>
             Where is the world?
           </Link>
 
-          <div className={styles.modeSwitcher} onClick={toggleTheme}>
-            <IoMoon className={styles.ioMoon} />
+          <div className={styles['modeSwitcher']} onClick={toggleTheme}>
+            <IoMoon className={styles['ioMoon']} />
 
-            <span className={styles.spanSwitcher}>
+            <span className={styles['spanSwitcher']}>
               {theme === 'dark' ? 'light' : 'dark'} theme
             </span>
           </div>
