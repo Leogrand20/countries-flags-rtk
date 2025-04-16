@@ -4,8 +4,9 @@ import { setRegionFilter } from "../redux/slices/filterSlice";
 import { selectRegionFilter } from "../redux/selectors/filter-selectors";
 import { CountryOption } from "../components/search/CustomSelect";
 import { Region } from "../types/regions";
+import { SingleValue } from "react-select";
 
-type OnSelectHandler = (reg: CountryOption) => void;
+type OnSelectHandler = (reg: SingleValue<CountryOption>) => void;
 
 export const useRegion = (): [Region | "", OnSelectHandler] => {
   const dispatch = useAppDispatch();
