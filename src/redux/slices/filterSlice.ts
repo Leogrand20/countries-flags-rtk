@@ -1,43 +1,43 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { FilterSlice } from "../../types/filters";
-import { Region } from "../../types/regions";
+import { FilterSlice } from '../../types/filters'
+import { Region } from '../../types/regions'
 
 const initialState: FilterSlice = {
-  search: "",
-  region: "",
+  search: '',
+  region: '',
   sortMode: null,
-};
+}
 
 const filterSlice = createSlice({
-  name: "filter",
+  name: 'filter',
   initialState,
 
   reducers: {
     setSearchFilter: (state, { payload }: PayloadAction<string>): void => {
-      state.search = payload;
+      state.search = payload
     },
 
-    setRegionFilter: (state, { payload }: PayloadAction<Region | "">): void => {
-      state.region = payload;
+    setRegionFilter: (state, { payload }: PayloadAction<Region | ''>): void => {
+      state.region = payload
     },
 
     setSortModeFilter: (
       state,
-      { payload }: PayloadAction<string | null>,
+      { payload }: PayloadAction<string | null>
     ): void => {
-      state.sortMode = payload;
+      state.sortMode = payload
     },
 
     resetFilters: () => initialState,
   },
-});
+})
 
 export const {
   setSearchFilter,
   setRegionFilter,
   setSortModeFilter,
   resetFilters,
-} = filterSlice.actions;
+} = filterSlice.actions
 
-export default filterSlice.reducer;
+export default filterSlice.reducer

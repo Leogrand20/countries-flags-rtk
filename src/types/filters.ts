@@ -1,7 +1,7 @@
-import { Region } from "./regions";
+import { Region } from './regions'
 
 export type FilterSlice = {
-  search: string;
-  region: Region | "";
-  sortMode: string | null;
-};
+  search: string
+  region: Region | ''
+  sortMode: string | null
+}

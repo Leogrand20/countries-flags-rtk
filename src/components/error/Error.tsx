@@ -1,20 +1,20 @@
-import { FC, useEffect } from "react";
-import { ToastContainer, toast, Bounce } from "react-toastify";
+import { FC, useEffect } from 'react'
+import { ToastContainer, toast, Bounce } from 'react-toastify'
 
-import { useAppDispatch, useAppSelector } from "../../redux/store";
-import { clearError } from "../../redux/slices/errorSlice";
-import { selectError } from "../../redux/selectors/error-selectors";
+import { useAppDispatch, useAppSelector } from '../../redux/store'
+import { clearError } from '../../redux/slices/errorSlice'
+import { selectError } from '../../redux/selectors/error-selectors'
 
 export const Error: FC = () => {
-  const errorMessage: string = useAppSelector(selectError);
-  const dispatch = useAppDispatch();
+  const errorMessage: string = useAppSelector(selectError)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     if (errorMessage) {
-      toast.error(errorMessage);
-      dispatch(clearError());
+      toast.error(errorMessage)
+      dispatch(clearError())
     }
-  }, [errorMessage, dispatch]);
+  }, [errorMessage, dispatch])
 
   return (
     <ToastContainer
@@ -30,5 +30,5 @@ export const Error: FC = () => {
       theme="light"
       transition={Bounce}
     />
-  );
-};
+  )
+}

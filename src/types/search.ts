@@ -1,9 +1,9 @@
-import { Region } from "./regions";
+import { Region } from './regions'
 
 export type SearchProps = {
   onSearch: (
     search: string,
-    region: Region | "",
-    sortMode: string | null,
-  ) => void;
-};
+    region: Region | '',
+    sortMode: string | null
+  ) => void
+}

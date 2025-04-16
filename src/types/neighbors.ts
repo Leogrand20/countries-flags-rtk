@@ -1,3 +1,3 @@
 export type NeighborsSlice = {
-  neighbors: string[];
-};
+  neighbors: string[]
+}
