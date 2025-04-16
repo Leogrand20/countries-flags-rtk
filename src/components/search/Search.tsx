@@ -1,5 +1,4 @@
 import { FC, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { IoSearch } from "react-icons/io5";
 
 import { CustomSelect } from "./CustomSelect";
@@ -9,12 +8,14 @@ import { useSearch } from "../../hooks/useSearch";
 import { useSortMode } from "../../hooks/useSortMode";
 
 import { SearchProps } from "../../types/search";
+import { useAppSelector } from "../../redux/store";
+
 import styles from "./Search.module.css";
 
 export const Search: FC<SearchProps> = ({ onSearch }) => {
   const [search, setSearch] = useSearch();
   const [sortMode, setSortMode] = useSortMode();
-  const region = useSelector(selectRegionFilter);
+  const region = useAppSelector(selectRegionFilter);
 
   useEffect(() => {
     onSearch(search, region, sortMode);

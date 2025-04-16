@@ -1,50 +1,50 @@
-import { FC, useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { FC, useEffect, useState } from "react";
 
-import { Search } from '../components/search/Search'
-import { Preloader } from '../components/preloader/Preloader'
-import { CountriesList } from '../components/countries/CountriesList'
+import { Search } from "../components/search/Search";
+import { Preloader } from "../components/preloader/Preloader";
+import { CountriesList } from "../components/countries/CountriesList";
 
-import { fetchCountries } from '../redux/slices/countriesSlice'
+import { fetchCountries } from "../redux/slices/countriesSlice";
 
 import {
   selectRegionFilter,
   selectSearchFilter,
   selectSortModeFilter,
-} from '../redux/selectors/filter-selectors'
+} from "../redux/selectors/filter-selectors";
 
+import { useAppDispatch, useAppSelector } from "../redux/store";
 import {
   selectCountries,
   selectIsLoading,
-} from '../redux/selectors/countries-selectors'
+} from "../redux/selectors/countries-selectors";
 
 export const Home: FC = () => {
-  const dispatch = useDispatch()
-  const countries = useSelector(selectCountries)
-  const [filteredCountries, setFilteredCountries] = useState(countries)
-  const isLoading = useSelector(selectIsLoading)
-  const search = useSelector(selectSearchFilter)
-  const region = useSelector(selectRegionFilter)
-  const sortMode = useSelector(selectSortModeFilter)
+  const dispatch = useAppDispatch();
+  const countries = useAppSelector(selectCountries);
+  const [filteredCountries, setFilteredCountries] = useState(countries);
+  const isLoading = useAppSelector(selectIsLoading);
+  const search = useAppSelector(selectSearchFilter);
+  const region = useAppSelector(selectRegionFilter);
+  const sortMode = useAppSelector(selectSortModeFilter);
 
   useEffect(() => {
     if (!countries.length) {
-      dispatch(fetchCountries())
+      dispatch(fetchCountries());
     }
-  }, [])
+  }, []);
 
   const handleSearch = (search: string, region: string, sortMode: string) => {
-    let data = [...countries]
+    let data = [...countries];
 
     if (search) {
       data = data.filter(
         (country) =>
-          country.name && RegExp(search, 'i').test(country.name.common),
-      )
+          country.name && RegExp(search, "i").test(country.name.common),
+      );
     }
 
     if (region) {
-      data = data.filter((country) => country.region?.includes(region))
+      data = data.filter((country) => country.region?.includes(region));
     }
 
     if (sortMode) {
@@ -52,28 +52,28 @@ export const Home: FC = () => {
         if (
           a.name &&
           b.name &&
-          sortMode === 'asc' &&
+          sortMode === "asc" &&
           a.name.common > b.name.common
         )
-          return 1
-        else if (sortMode === 'asc') return -1
+          return 1;
+        else if (sortMode === "asc") return -1;
         else if (
           a.name &&
           b.name &&
-          sortMode === 'desc' &&
+          sortMode === "desc" &&
           a.name.common < b.name.common
         )
-          return 1
-        else return -1
-      })
+          return 1;
+        else return -1;
+      });
     }
 
-    setFilteredCountries(data)
-  }
+    setFilteredCountries(data);
+  };
 
   useEffect(() => {
-    handleSearch(search, region, sortMode!)
-  }, [countries])
+    handleSearch(search, region, sortMode!);
+  }, [countries]);
 
   return (
     <>
@@ -85,5 +85,5 @@ export const Home: FC = () => {
         <CountriesList countries={filteredCountries} />
       )}
     </>
-  )
-}
+  );
+};

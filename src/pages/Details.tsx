@@ -1,23 +1,25 @@
-import { FC, useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router'
-import { useDispatch, useSelector } from 'react-redux'
-import { IoArrowBack } from 'react-icons/io5'
+import { FC, useEffect } from "react";
+import { NavigateFunction, useNavigate, useParams } from "react-router";
+import { IoArrowBack } from "react-icons/io5";
 
-import { Preloader } from '../components/preloader/Preloader'
-import { CountryInfo } from '../components/countries/CountryInfo'
+import { Preloader } from "../components/preloader/Preloader";
+import { CountryInfo } from "../components/countries/CountryInfo";
 
-import { fetchCountry } from '../redux/slices/countrySlice'
-import { selectIsLoading } from '../redux/selectors/country-selectors'
+import { useAppDispatch, useAppSelector } from "../redux/store";
+import { fetchCountry } from "../redux/slices/countrySlice";
+import { selectIsLoading } from "../redux/selectors/country-selectors";
 
 export const Details: FC = () => {
-  const { countryName } = useParams()
-  const isLoading = useSelector(selectIsLoading)
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const { countryName } = useParams();
+  const isLoading = useAppSelector(selectIsLoading);
+  const navigate: NavigateFunction = useNavigate();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchCountry(countryName))
-  }, [countryName])
+    if (countryName) {
+      dispatch(fetchCountry(countryName));
+    }
+  }, [countryName]);
 
   return (
     <>
@@ -27,5 +29,5 @@ export const Details: FC = () => {
 
       {isLoading ? <Preloader /> : <CountryInfo />}
     </>
-  )
-}
+  );
+};
