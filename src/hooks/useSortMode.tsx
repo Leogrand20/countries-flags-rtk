@@ -1,17 +1,17 @@
-import { ChangeEvent } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { ChangeEvent } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { setSortModeFilter } from '../redux/slices/filterSlice'
+import { setSortModeFilter } from "../redux/slices/filterSlice";
 
-import { selectSortModeFilter } from '../redux/selectors/filter-selectors'
+import { selectSortModeFilter } from "../redux/selectors/filter-selectors";
 
 export const useSortMode = () => {
-  const dispatch = useDispatch()
-  const sortMode = useSelector(selectSortModeFilter)
+  const dispatch = useDispatch();
+  const sortMode = useSelector(selectSortModeFilter);
 
-  const handleSetSortModeFilter = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setSortModeFilter(e.target.value))
-  }
+  const setSortMode = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSortModeFilter(e.target.value));
+  };
 
-  return [sortMode, handleSetSortModeFilter]
-}
+  return [sortMode, setSortMode];
+};

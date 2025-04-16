@@ -1,27 +1,28 @@
-import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { IoSearch } from 'react-icons/io5'
+import { FC, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { IoSearch } from "react-icons/io5";
 
-import { CustomSelect } from './CustomSelect'
-import { selectRegionFilter } from '../../redux/selectors/filter-selectors'
+import { CustomSelect } from "./CustomSelect";
+import { selectRegionFilter } from "../../redux/selectors/filter-selectors";
 
-import { useSearch } from '../../hooks/useSearch'
-import { useSortMode } from '../../hooks/useSortMode'
+import { useSearch } from "../../hooks/useSearch";
+import { useSortMode } from "../../hooks/useSortMode";
 
-import styles from './Search.module.css'
+import { SearchProps } from "../../types/search";
+import styles from "./Search.module.css";
 
-export const Search = ({ onSearch }) => {
-  const [search, handleSetSearchFilter] = useSearch()
-  const [sortMode, handleSetSortModeFilter] = useSortMode()
-  const region = useSelector(selectRegionFilter)
+export const Search: FC<SearchProps> = ({ onSearch }) => {
+  const [search, setSearch] = useSearch();
+  const [sortMode, setSortMode] = useSortMode();
+  const region = useSelector(selectRegionFilter);
 
   useEffect(() => {
-    onSearch(search, region, sortMode)
-  }, [search, region, sortMode])
+    onSearch(search, region, sortMode);
+  }, [search, region, sortMode]);
 
   return (
-    <div className={styles.wrapper}>
-      <label htmlFor="search" className={styles.labelSearch}>
+    <div className={styles["wrapper"]}>
+      <label htmlFor="search" className={styles["labelSearch"]}>
         <IoSearch />
 
         <input
@@ -29,9 +30,9 @@ export const Search = ({ onSearch }) => {
           name="search"
           id="search"
           placeholder="Search for a country..."
-          className={styles.inputSearch}
+          className={styles["inputSearch"]}
           value={search}
-          onChange={handleSetSearchFilter}
+          onChange={setSearch}
         />
       </label>
 
@@ -40,21 +41,21 @@ export const Search = ({ onSearch }) => {
           type="radio"
           name="sort"
           value="asc"
-          checked={sortMode === 'asc'}
-          onChange={handleSetSortModeFilter}
+          checked={sortMode === "asc"}
+          onChange={setSortMode}
         />
         A-Z
         <input
           type="radio"
           name="sort"
           value="desc"
-          checked={sortMode === 'desc'}
-          onChange={handleSetSortModeFilter}
+          checked={sortMode === "desc"}
+          onChange={setSortMode}
         />
         Z-A
       </div>
 
       <CustomSelect />
     </div>
-  )
-}
+  );
+};
