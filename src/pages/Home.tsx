@@ -17,6 +17,7 @@ import {
   selectCountries,
   selectIsLoading,
 } from "../redux/selectors/countries-selectors";
+import { Region } from "../types/regions";
 
 export const Home: FC = () => {
   const dispatch = useAppDispatch();
@@ -33,7 +34,11 @@ export const Home: FC = () => {
     }
   }, []);
 
-  const handleSearch = (search: string, region: string, sortMode: string) => {
+  const handleSearch = (
+    search: string,
+    region: Region | "",
+    sortMode: string | null,
+  ) => {
     let data = [...countries];
 
     if (search) {
@@ -72,7 +77,7 @@ export const Home: FC = () => {
   };
 
   useEffect(() => {
-    handleSearch(search, region, sortMode!);
+    handleSearch(search, region, sortMode);
   }, [countries]);
 
   return (

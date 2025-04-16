@@ -1,14 +1,16 @@
-import { ChangeEvent } from "react";
+import { ChangeEventHandler } from "react";
 
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { setSearchFilter } from "../redux/slices/filterSlice";
 import { selectSearchFilter } from "../redux/selectors/filter-selectors";
 
-export const useSearch = () => {
+type OnSearchHandler = ChangeEventHandler<HTMLInputElement>;
+
+export const useSearch = (): [string, OnSearchHandler] => {
   const dispatch = useAppDispatch();
   const search = useAppSelector(selectSearchFilter);
 
-  const setSearch = (e: ChangeEvent<HTMLInputElement>): void => {
+  const setSearch: OnSearchHandler = (e): void => {
     dispatch(setSearchFilter(e.target.value));
   };
 
