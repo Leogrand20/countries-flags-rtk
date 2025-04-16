@@ -1,31 +1,31 @@
-import { defineConfig } from 'vite'
-import { resolve } from 'path'
+import { defineConfig } from "vite";
+import { resolve } from "path";
 
-import react from '@vitejs/plugin-react-swc'
-import Inspect from 'vite-plugin-inspect'
-import legacy from 'vite-plugin-legacy-swc'
-import htmlTemplate from 'vite-plugin-html-template-mpa'
-import copy from 'vite-plugin-cp'
-import svgr from 'vite-plugin-svgr'
+import react from "@vitejs/plugin-react-swc";
+import Inspect from "vite-plugin-inspect";
+import legacy from "vite-plugin-legacy-swc";
+import htmlTemplate from "vite-plugin-html-template-mpa";
+import copy from "vite-plugin-cp";
+import svgr from "vite-plugin-svgr";
 
-const chunkSize = 1024
+const chunkSize = 1024;
 
 const copyTarget = {
-  targets: [{ src: './src/assets/video', dest: 'dist/assets/video' }],
-}
+  targets: [{ src: "./src/assets/video", dest: "dist/assets/video" }],
+};
 
 const alias = {
-  '@': resolve(__dirname, 'src'),
-  '@css': resolve(__dirname, 'src/styles'),
-  '@icons': resolve(__dirname, 'src/assets/icons'),
-  '@img': resolve(__dirname, 'src/assets/img'),
-  '@fonts': resolve(__dirname, 'src/assets/fonts'),
-}
+  "@": resolve(__dirname, "src"),
+  "@css": resolve(__dirname, "src/styles"),
+  "@icons": resolve(__dirname, "src/assets/icons"),
+  "@img": resolve(__dirname, "src/assets/img"),
+  "@fonts": resolve(__dirname, "src/assets/fonts"),
+};
 
-const extensions = ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json']
+const extensions = [".mjs", ".js", ".mts", ".ts", ".jsx", ".tsx", ".json"];
 
 export default defineConfig(({ command }) => {
-  if (command === 'build') {
+  if (command === "build") {
     return {
       build: {
         chunkSizeWarningLimit: chunkSize,
@@ -38,7 +38,7 @@ export default defineConfig(({ command }) => {
           scss: {
             additionalData: `$injectedColor: orange;`,
 
-            api: 'modern-compiler',
+            api: "modern-compiler",
           },
         },
       },
@@ -51,7 +51,7 @@ export default defineConfig(({ command }) => {
         copy(copyTarget),
 
         legacy({
-          targets: ['>0.3%', 'defaults', 'last 100 versions', 'not dead'],
+          targets: [">0.3%", "defaults", "last 100 versions", "not dead"],
         }),
 
         htmlTemplate({
@@ -62,12 +62,12 @@ export default defineConfig(({ command }) => {
 
         svgr({
           svgrOptions: {
-            exportType: 'named',
+            exportType: "named",
             ref: true,
             svgo: false,
             titleProp: true,
           },
-          include: '**/*.svg',
+          include: "**/*.svg",
         }),
       ],
 
@@ -75,7 +75,7 @@ export default defineConfig(({ command }) => {
         alias,
         extensions,
       },
-    }
+    };
   } else {
     return {
       css: {
@@ -83,7 +83,7 @@ export default defineConfig(({ command }) => {
           scss: {
             additionalData: `$injectedColor: orange;`,
 
-            api: 'modern-compiler',
+            api: "modern-compiler",
           },
         },
 
@@ -96,7 +96,7 @@ export default defineConfig(({ command }) => {
       },
 
       build: {
-        sourcemap: 'inline',
+        sourcemap: "inline",
 
         minify: false,
 
@@ -113,12 +113,12 @@ export default defineConfig(({ command }) => {
         react(),
         svgr({
           svgrOptions: {
-            exportType: 'named',
+            exportType: "named",
             ref: true,
             svgo: false,
             titleProp: true,
           },
-          include: '**/*.svg',
+          include: "**/*.svg",
         }),
       ],
 
@@ -126,6 +126,6 @@ export default defineConfig(({ command }) => {
         alias,
         extensions,
       },
-    }
+    };
   }
-})
+});

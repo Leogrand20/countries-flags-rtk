@@ -1,13 +1,13 @@
-import { Route, Routes } from 'react-router'
+import { Route, Routes } from "react-router";
 
-import { Header } from '../../layouts/Header'
-import { Main } from '../../layouts/Main'
-import { Home } from '../../pages/Home'
-import { Details } from '../../pages/Details'
-import { NotFound } from '../../pages/NotFound'
-import { Error } from '../error/Error'
+import { Header } from "../../layouts/Header";
+import { Main } from "../../layouts/Main";
+import { Home } from "../../pages/Home";
+import { Details } from "../../pages/Details";
+import { NotFound } from "../../pages/NotFound";
+import { Error } from "../error/Error";
 
-import './App.css'
+import "./App.css";
 
 export const App = () => {
   return (
@@ -24,5 +24,5 @@ export const App = () => {
 
       <Error />
     </>
-  )
-}
+  );
+};

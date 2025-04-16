@@ -1,8 +1,8 @@
-import { Axios } from 'axios'
+import { Axios } from "axios";
 
-import * as api from '../api/config'
+import * as api from "../api/config";
 
 export type Extra = {
-  client: Axios
-  api: typeof api
-}
+  client: Axios;
+  api: typeof api;
+};

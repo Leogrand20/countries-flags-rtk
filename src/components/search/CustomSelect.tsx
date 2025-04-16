@@ -1,7 +1,7 @@
 import Select, { Props } from "react-select";
 
 import { useRegion } from "../../hooks/useRegion";
-import { Region } from "../../types/regions";
+import { Region, RegionOption } from "../../types/regions";
 
 import styles from "./Search.module.css";
 
@@ -12,14 +12,6 @@ export type CountryOption =
     }
   | "";
 
-function CountrySelect(props: Props<CountryOption, false>) {
-  return <Select {...props} />;
-}
-
-type RegionOption = {
-  [RegKey in Region]: { value: RegKey; label: RegKey };
-};
-
 const optionsMap: RegionOption = {
   Africa: { value: "Africa", label: "Africa" },
   America: { value: "America", label: "America" },
@@ -29,6 +21,10 @@ const optionsMap: RegionOption = {
 };
 
 const options = Object.values(optionsMap);
+
+function CountrySelect(props: Props<CountryOption, false>) {
+  return <Select {...props} />;
+}
 
 export const CustomSelect = () => {
   const [region, setRegion] = useRegion();
