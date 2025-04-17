@@ -15,9 +15,9 @@ const optionsMap: RegionOptionsMap = {
 
 const options = Object.values(optionsMap)
 
-function RegionSelect(props: Props<RegionOptions, false>) {
-  return <Select {...props} />
-}
+const RegionSelect = (props: Props<RegionOptions, false>) => (
+  <Select {...props} />
+)
 
 export const CustomSelect = () => {
   const [region, setRegion] = useRegion()
