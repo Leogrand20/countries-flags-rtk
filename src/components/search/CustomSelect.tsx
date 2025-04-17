@@ -1,18 +1,11 @@
 import Select, { Props } from 'react-select'
 
 import { useRegion } from '../../hooks/useRegion'
-import { Region, RegionOption } from '../../types/regions'
+import { RegionOptions, RegionOptionsMap } from '../../types/regions'
 
 import styles from './Search.module.css'
 
-export type CountryOption =
-  | {
-      label: Region
-      value: Region
-    }
-  | ''
-
-const optionsMap: RegionOption = {
+const optionsMap: RegionOptionsMap = {
   Africa: { value: 'Africa', label: 'Africa' },
   America: { value: 'America', label: 'America' },
   Asia: { value: 'Asia', label: 'Asia' },
@@ -22,7 +15,7 @@ const optionsMap: RegionOption = {
 
 const options = Object.values(optionsMap)
 
-function CountrySelect(props: Props<CountryOption, false>) {
+function CountrySelect(props: Props<RegionOptions, false>) {
   return <Select {...props} />
 }
 

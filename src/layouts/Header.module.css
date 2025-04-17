@@ -1,3 +1,8 @@
+.header {
+  box-shadow: var(--shadow);
+  background-color: var(--colors-ui-base);
+}
+
 .wrapper {
   display: flex;
   justify-content: space-between;
