@@ -15,7 +15,7 @@ const optionsMap: RegionOptionsMap = {
 
 const options = Object.values(optionsMap)
 
-function CountrySelect(props: Props<RegionOptions, false>) {
+function RegionSelect(props: Props<RegionOptions, false>) {
   return <Select {...props} />
 }
 
@@ -23,7 +23,7 @@ export const CustomSelect = () => {
   const [region, setRegion] = useRegion()
 
   return (
-    <CountrySelect
+    <RegionSelect
       placeholder="Filter by Region"
       className={styles['select']}
       options={options}
