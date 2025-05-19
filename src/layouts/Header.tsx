@@ -1,9 +1,9 @@
-import { useState, useEffect, FC } from 'react'
-import { Link } from 'react-router'
+import { FC,useEffect, useState } from 'react'
 import { IoMoon } from 'react-icons/io5'
+import { Link } from 'react-router'
 
-import { useAppDispatch } from '../redux/store'
 import { resetFilters } from '../redux/slices/filterSlice'
+import { useAppDispatch } from '../redux/store'
 
 import styles from './Header.module.css'
 

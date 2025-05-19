@@ -1,9 +1,9 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createAsyncThunk,createSlice } from '@reduxjs/toolkit'
 
-import { setError } from './errorSlice'
 import { Country, CountrySlice } from '../../types/countries'
 import { Extra } from '../../types/extra'
 import { createCountry } from '../../utils/createCountry'
+import { setError } from './errorSlice'
 
 const initialState: CountrySlice = {
   country: {},

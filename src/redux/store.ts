@@ -1,14 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
-
-import countriesReducer from './slices/countriesSlice'
-import countryReducer from './slices/countrySlice'
-import neighborsReducer from './slices/neighborsSlice'
-import errorReducer from './slices/errorSlice'
-import filterReducer from './slices/filterSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 import * as api from '../api/config'
+import countriesReducer from './slices/countriesSlice'
+import countryReducer from './slices/countrySlice'
+import errorReducer from './slices/errorSlice'
+import filterReducer from './slices/filterSlice'
+import neighborsReducer from './slices/neighborsSlice'
 
 export const store = configureStore({
   reducer: {

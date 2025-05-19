@@ -1,7 +1,7 @@
 import { ChangeEventHandler } from 'react'
 import { SingleValue } from 'react-select'
 
-import { RegionOptions } from '../components/search/CustomSelect'
+import { RegionOptions } from '../types/regions'
 
 export type OnSearchHandler = ChangeEventHandler<HTMLInputElement>
 

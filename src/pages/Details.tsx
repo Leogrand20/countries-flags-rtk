@@ -1,13 +1,12 @@
 import { FC, useEffect } from 'react'
-import { NavigateFunction, useNavigate, useParams } from 'react-router'
 import { IoArrowBack } from 'react-icons/io5'
+import { NavigateFunction, useNavigate, useParams } from 'react-router'
 
-import { Preloader } from '../components/preloader/Preloader'
 import { CountryInfo } from '../components/countries/CountryInfo'
-
-import { useAppDispatch, useAppSelector } from '../redux/store'
-import { fetchCountry } from '../redux/slices/countrySlice'
+import { Preloader } from '../components/preloader/Preloader'
 import { selectIsLoading } from '../redux/selectors/country-selectors'
+import { fetchCountry } from '../redux/slices/countrySlice'
+import { useAppDispatch, useAppSelector } from '../redux/store'
 
 export const Details: FC = () => {
   const { countryName } = useParams()
@@ -19,7 +18,7 @@ export const Details: FC = () => {
     if (countryName) {
       dispatch(fetchCountry(countryName))
     }
-  }, [countryName])
+  }, [countryName, dispatch])
 
   return (
     <>

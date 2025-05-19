@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
-import { CountriesItem } from './CountriesItem'
 import { CountriesListProps } from '../../types/countries'
+import { CountriesItem } from './CountriesItem'
 
 import styles from './Countries.module.css'
 

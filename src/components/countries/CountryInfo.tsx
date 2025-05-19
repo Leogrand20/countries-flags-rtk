@@ -1,10 +1,10 @@
 import { FC, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 
-import { useAppDispatch, useAppSelector } from '../../redux/store'
 import { selectCountry } from '../../redux/selectors/country-selectors'
-import { fetchNeighbors } from '../../redux/slices/neighborsSlice'
 import { selectNeighbors } from '../../redux/selectors/neighbors-selectors'
+import { fetchNeighbors } from '../../redux/slices/neighborsSlice'
+import { useAppDispatch, useAppSelector } from '../../redux/store'
 
 import styles from './Countries.module.css'
 
@@ -37,7 +37,7 @@ export const CountryInfo: FC = () => {
     if (borders.length) {
       dispatch(fetchNeighbors(borders))
     }
-  }, [borders])
+  }, [borders, dispatch])
 
   return (
     <section className={styles['countryInfo']}>

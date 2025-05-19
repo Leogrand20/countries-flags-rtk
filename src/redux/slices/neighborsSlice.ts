@@ -1,9 +1,9 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createAsyncThunk,createSlice } from '@reduxjs/toolkit'
 
-import { setError } from './errorSlice'
-import { Extra } from '../../types/extra'
 import { Country } from '../../types/countries'
+import { Extra } from '../../types/extra'
 import { NeighborsSlice } from '../../types/neighbors'
+import { setError } from './errorSlice'
 
 const initialState: NeighborsSlice = {
   neighbors: [],

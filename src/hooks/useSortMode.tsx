@@ -1,6 +1,6 @@
-import { useAppDispatch, useAppSelector } from '../redux/store'
-import { setSortModeFilter } from '../redux/slices/filterSlice'
 import { selectSortModeFilter } from '../redux/selectors/filter-selectors'
+import { setSortModeFilter } from '../redux/slices/filterSlice'
+import { useAppDispatch, useAppSelector } from '../redux/store'
 import { OnCheckboxHandler } from '../types/hooks'
 
 export const useSortMode = (): [string | null, OnCheckboxHandler] => {

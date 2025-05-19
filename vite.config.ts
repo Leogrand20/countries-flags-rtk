@@ -1,11 +1,10 @@
-import { defineConfig } from 'vite'
-import { resolve } from 'path'
-
 import react from '@vitejs/plugin-react-swc'
+import { resolve } from 'path'
+import { defineConfig } from 'vite'
+import copy from 'vite-plugin-cp'
+import htmlTemplate from 'vite-plugin-html-template-mpa'
 import Inspect from 'vite-plugin-inspect'
 import legacy from 'vite-plugin-legacy-swc'
-import htmlTemplate from 'vite-plugin-html-template-mpa'
-import copy from 'vite-plugin-cp'
 import svgr from 'vite-plugin-svgr'
 
 const chunkSize = 1024
@@ -16,6 +15,7 @@ const copyTarget = {
 
 const alias = {
   '@': resolve(__dirname, 'src'),
+  '@public': resolve(__dirname, 'public'),
   '@css': resolve(__dirname, 'src/styles'),
   '@icons': resolve(__dirname, 'src/assets/icons'),
   '@img': resolve(__dirname, 'src/assets/img'),
@@ -27,6 +27,13 @@ const extensions = ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json']
 export default defineConfig(({ command }) => {
   if (command === 'build') {
     return {
+      optimizeDeps: {
+        exclude: ['vite-sample'],
+        esbuildOptions: {
+          jsx: 'automatic',
+        },
+      },
+
       build: {
         chunkSizeWarningLimit: chunkSize,
 
@@ -78,6 +85,13 @@ export default defineConfig(({ command }) => {
     }
   } else {
     return {
+      optimizeDeps: {
+        exclude: ['vite-sample'],
+        esbuildOptions: {
+          jsx: 'automatic',
+        },
+      },
+
       css: {
         preprocessorOptions: {
           scss: {

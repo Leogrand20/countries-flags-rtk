@@ -1,9 +1,9 @@
 import { FC, useEffect } from 'react'
-import { ToastContainer, toast, Bounce } from 'react-toastify'
+import { Bounce,toast, ToastContainer } from 'react-toastify'
 
-import { useAppDispatch, useAppSelector } from '../../redux/store'
-import { clearError } from '../../redux/slices/errorSlice'
 import { selectError } from '../../redux/selectors/error-selectors'
+import { clearError } from '../../redux/slices/errorSlice'
+import { useAppDispatch, useAppSelector } from '../../redux/store'
 
 export const Error: FC = () => {
   const errorMessage: string = useAppSelector(selectError)
