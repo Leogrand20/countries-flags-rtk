@@ -49,10 +49,9 @@
   "include": [
     "src/",
     "index.tsx",
-    "src/shared/types/svg.d.ts",
-    "src/shared/types/webpack-alias.d.ts",
     "eslint.config.ts",
-    "vite.config.ts"
+    "vite.config.ts",
+    "webpack.alias.ts"
   ],
   "exclude": ["node_modules", "dist"]
 }
