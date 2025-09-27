@@ -1,16 +1,16 @@
-import Select, { Props } from 'react-select'
+import Select, {type Props} from 'react-select'
 
-import { useRegion } from '../../hooks/useRegion'
-import { RegionOptions, RegionOptionsMap } from '../../types/regions'
+import {type RegionOptions, type RegionOptionsMap} from '@shared/types/regions'
+import {useRegion} from '@hooks/useRegion'
 
 import styles from './Search.module.css'
 
 const optionsMap: RegionOptionsMap = {
-  Africa: { value: 'Africa', label: 'Africa' },
-  America: { value: 'America', label: 'America' },
-  Asia: { value: 'Asia', label: 'Asia' },
-  Europe: { value: 'Europe', label: 'Europe' },
-  Oceania: { value: 'Oceania', label: 'Oceania' },
+  Africa: {value: 'Africa', label: 'Africa'},
+  America: {value: 'America', label: 'America'},
+  Asia: {value: 'Asia', label: 'Asia'},
+  Europe: {value: 'Europe', label: 'Europe'},
+  Oceania: {value: 'Oceania', label: 'Oceania'},
 }
 
 const options = Object.values(optionsMap)
@@ -25,7 +25,7 @@ export const CustomSelect = () => {
   return (
     <RegionSelect
       placeholder="Filter by Region"
-      className={styles['select']}
+      className={styles.select}
       options={options}
       value={region ? optionsMap[region] : ''}
       onChange={setRegion}

@@ -1,10 +1,10 @@
-import { v4 as uuidv4 } from 'uuid'
+import { v7 as uuidv7 } from 'uuid'
 
-import { Country } from '../types/countries'
+import { type Country } from '@shared/types/countries'
 
 export const createCountry = (country: Country) => {
   return {
     ...country,
-    id: uuidv4(),
+    id: uuidv7(),
   }
 }

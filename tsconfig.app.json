@@ -7,10 +7,20 @@
     "lib": ["ES2024", "DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
     "skipLibCheck": true,
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
-      "@shared/*": ["shared/*"],
-      "@entities/*": ["entities/*"]
+      "@shared/*": ["src/shared/*"],
+      "@app/*": ["src/app/*"],
+      "@components/*": ["src/components/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@pages/*": ["src/pages/*"],
+      "@store/*": ["src/store/*"],
+      "@utils/*": ["src/utils/*"],
+      "@css/*": ["src/app/styles/*"],
+      "@fonts/*": ["src/shared/assets/fonts/*"],
+      "@img/*": ["src/shared/assets/img/*"],
+      "@icons/*": ["src/shared/assets/icons/*"]
     },
 
     /* Bundler mode */
@@ -32,10 +42,17 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true, // extra
-    "noPropertyAccessFromIndexSignature": true, // dynamic fields: obj.key => obj['key']
-    "noUncheckedIndexedAccess": true, // dynamic fields: obj.key => obj['key'].length
+    "noPropertyAccessFromIndexSignature": false, // dynamic fields: obj.key => obj['key']
+    "noUncheckedIndexedAccess": false, // dynamic fields: obj.key => obj['key'].length
     "noImplicitReturns": false // all returns - not toggled
   },
-  "include": ["src/", "index.tsx", "src/custom.d.ts"],
+  "include": [
+    "src/",
+    "index.tsx",
+    "src/shared/types/svg.d.ts",
+    "src/shared/types/webpack-alias.d.ts",
+    "eslint.config.ts",
+    "vite.config.ts"
+  ],
   "exclude": ["node_modules", "dist"]
 }

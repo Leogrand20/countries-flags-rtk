@@ -1,10 +1,10 @@
-import { FC, useEffect } from 'react'
-import { useNavigate } from 'react-router'
+import { type FC, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-import { selectCountry } from '../../redux/selectors/country-selectors'
-import { selectNeighbors } from '../../redux/selectors/neighbors-selectors'
-import { fetchNeighbors } from '../../redux/slices/neighborsSlice'
-import { useAppDispatch, useAppSelector } from '../../redux/store'
+import { selectCountry } from '@store/selectors/country-selectors'
+import { selectNeighbors } from '@store/selectors/neighbors-selectors'
+import { fetchNeighbors } from '@store/slices/neighborsSlice'
+import { useAppDispatch, useAppSelector } from '@store/store'
 
 import styles from './Countries.module.css'
 
@@ -40,65 +40,67 @@ export const CountryInfo: FC = () => {
   }, [borders, dispatch])
 
   return (
-    <section className={styles['countryInfo']}>
+    <section className={styles.countryInfo}>
       <img
-        className={styles['countryInfoImg']}
+        className={styles.countryInfoImg}
         src={flags?.png}
         alt={flags?.alt}
       />
 
       <div className="info">
-        <h1 className={styles['countryInfoTitle']}>{name?.common}</h1>
+        <h1 className={styles.countryInfoTitle}>{name?.common}</h1>
 
-        <div className={styles['countryInfoData']}>
-          <ul className={styles['countryDataList']}>
-            <li className={styles['countryDataListItem']}>
+        <div className={styles.countryInfoData}>
+          <ul className={styles.countryDataList}>
+            <li className={styles.countryDataListItem}>
               <strong>Native Name:</strong> {name?.official}
             </li>
-            <li className={styles['countryDataListItem']}>
+            <li className={styles.countryDataListItem}>
               <strong>Population</strong> {formattedPopulation}
             </li>
-            <li className={styles['countryDataListItem']}>
+            <li className={styles.countryDataListItem}>
               <strong>Region:</strong> {region}
             </li>
-            <li className={styles['countryDataListItem']}>
+            <li className={styles.countryDataListItem}>
               <strong>Sub Region:</strong> {subregion}
             </li>
-            <li className={styles['countryDataListItem']}>
+            <li className={styles.countryDataListItem}>
               <strong>Capital:</strong> {capital}
             </li>
           </ul>
 
-          <ul className={styles['countryDataList']}>
-            <li className={styles['countryDataListItem']}>
+          <ul className={styles.countryDataList}>
+            <li className={styles.countryDataListItem}>
               <strong>Top Level Domain: </strong> {tld[0]}
             </li>
-            <li className={styles['countryDataListItem']}>
+            <li className={styles.countryDataListItem}>
               <strong>Currencies: </strong>
               {Object.values(currencies)[0]?.name}
             </li>
-            <li className={styles['countryDataListItem']}>
+            <li className={styles.countryDataListItem}>
               <strong>Languages: </strong>
               {Object.values(languages).join(', ')}
             </li>
           </ul>
         </div>
 
-        <div className={styles['countryInfoMeta']}>
+        <div className={styles.countryInfoMeta}>
           <strong>Border Countries: </strong>
 
           {!borders.length ? (
             <span>There is no border countries</span>
           ) : (
-            <div className={styles['countryInfoMetaTags']}>
+            <div className={styles.countryInfoMetaTags}>
               {neighbors.map((neighbor: string) => (
                 <span
                   key={neighbor}
-                  className={styles['countryInfoMetaTagsSpan']}
+                  className={styles.countryInfoMetaTagsSpan}
                   onClick={() =>
                     navigate(
-                      `/country/${neighbor.toLowerCase().split(' ').join('?')}`,
-                      { relative: 'path' }
+                      `/country/${neighbor.toLowerCase()
+                        .split(' ')
+                        .join('?')}`,
+                      { relative: 'path' },
                     )
                   }
                 >

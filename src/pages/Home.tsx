@@ -1,20 +1,14 @@
-import { FC, useCallback, useEffect, useState } from 'react'
+import { type FC, useCallback, useEffect, useState } from 'react'
 
-import { CountriesList } from '../components/countries/CountriesList'
-import { Preloader } from '../components/preloader/Preloader'
-import { Search } from '../components/search/Search'
-import {
-  selectCountries,
-  selectIsLoading,
-} from '../redux/selectors/countries-selectors'
-import {
-  selectRegionFilter,
-  selectSearchFilter,
-  selectSortModeFilter,
-} from '../redux/selectors/filter-selectors'
-import { fetchCountries } from '../redux/slices/countriesSlice'
-import { useAppDispatch, useAppSelector } from '../redux/store'
-import { Region } from '../types/regions'
+import { type Region } from '@shared/types/regions'
+import { CountriesList } from '@components/countries/CountriesList'
+import { Preloader } from '@components/preloader/Preloader'
+import { Search } from '@components/search/Search'
+import { selectCountries } from '@store/selectors/countries-selectors'
+import { selectIsLoading } from '@store/selectors/country-selectors'
+import { selectRegionFilter, selectSearchFilter, selectSortModeFilter } from '@store/selectors/filter-selectors'
+import { fetchCountries } from '@store/slices/countriesSlice'
+import { useAppDispatch, useAppSelector } from '@store/store'
 
 export const Home: FC = () => {
   const dispatch = useAppDispatch()
@@ -38,7 +32,7 @@ export const Home: FC = () => {
       if (search) {
         data = data.filter(
           (country) =>
-            country.name && RegExp(search, 'i').test(country.name.common)
+            country.name && RegExp(search, 'i').test(country.name.common),
         )
       }
 
@@ -48,28 +42,18 @@ export const Home: FC = () => {
 
       if (sortMode) {
         data = data.toSorted((a, b) => {
-          if (
-            a.name &&
-            b.name &&
-            sortMode === 'asc' &&
-            a.name.common > b.name.common
-          )
-            return 1
+          if (a.name && b.name && sortMode === 'asc' && a.name.common >
+            b.name.common) return 1
           else if (sortMode === 'asc') return -1
-          else if (
-            a.name &&
-            b.name &&
-            sortMode === 'desc' &&
-            a.name.common < b.name.common
-          )
-            return 1
+          else if (a.name && b.name && sortMode === 'desc' && a.name.common <
+            b.name.common) return 1
           else return -1
         })
       }
 
       setFilteredCountries(data)
     },
-    [countries]
+    [countries],
   )
 
   useEffect(() => {

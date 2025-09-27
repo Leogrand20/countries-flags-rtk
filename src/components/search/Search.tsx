@@ -1,12 +1,12 @@
-import { FC, useEffect } from 'react'
+import { type FC, useEffect } from 'react'
 import { IoSearch } from 'react-icons/io5'
 
-import { useSearch } from '../../hooks/useSearch'
-import { useSortMode } from '../../hooks/useSortMode'
-import { selectRegionFilter } from '../../redux/selectors/filter-selectors'
-import { useAppSelector } from '../../redux/store'
-import { SearchProps } from '../../types/search'
-import { CustomSelect } from './CustomSelect'
+import { type SearchProps } from '@shared/types/search'
+import { CustomSelect } from '@components/search/CustomSelect'
+import { useSearch } from '@hooks/useSearch'
+import { useSortMode } from '@hooks/useSortMode'
+import { selectRegionFilter } from '@store/selectors/filter-selectors'
+import { useAppSelector } from '@store/store'
 
 import styles from './Search.module.css'
 
@@ -20,8 +20,8 @@ export const Search: FC<SearchProps> = ({ onSearch }) => {
   }, [search, region, sortMode, onSearch])
 
   return (
-    <div className={styles['wrapper']}>
-      <label htmlFor="search" className={styles['labelSearch']}>
+    <div className={styles.wrapper}>
+      <label htmlFor="search" className={styles.labelSearch}>
         <IoSearch />
 
         <input
@@ -29,7 +29,7 @@ export const Search: FC<SearchProps> = ({ onSearch }) => {
           name="search"
           id="search"
           placeholder="Search for a country..."
-          className={styles['inputSearch']}
+          className={styles.inputSearch}
           value={search}
           onChange={setSearch}
         />

@@ -1,7 +1,7 @@
-import { selectSearchFilter } from '../redux/selectors/filter-selectors'
-import { setSearchFilter } from '../redux/slices/filterSlice'
-import { useAppDispatch, useAppSelector } from '../redux/store'
-import { OnSearchHandler } from '../types/hooks'
+import { type OnSearchHandler } from '@shared/types/hooks'
+import { selectSearchFilter } from '@store/selectors/filter-selectors'
+import { setSearchFilter } from '@store/slices/filterSlice'
+import { useAppDispatch, useAppSelector } from '@store/store'
 
 export const useSearch = (): [string, OnSearchHandler] => {
   const dispatch = useAppDispatch()

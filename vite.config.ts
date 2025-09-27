@@ -1,5 +1,4 @@
 import react from '@vitejs/plugin-react-swc'
-import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import copy from 'vite-plugin-cp'
 import htmlTemplate from 'vite-plugin-html-template-mpa'
@@ -7,19 +6,12 @@ import Inspect from 'vite-plugin-inspect'
 import legacy from 'vite-plugin-legacy-swc'
 import svgr from 'vite-plugin-svgr'
 
+import { alias } from './webpack.alias'
+
 const chunkSize = 1024
 
 const copyTarget = {
   targets: [{ src: './src/assets/video', dest: 'dist/assets/video' }],
-}
-
-const alias = {
-  '@': resolve(__dirname, 'src'),
-  '@public': resolve(__dirname, 'public'),
-  '@css': resolve(__dirname, 'src/styles'),
-  '@icons': resolve(__dirname, 'src/assets/icons'),
-  '@img': resolve(__dirname, 'src/assets/img'),
-  '@fonts': resolve(__dirname, 'src/assets/fonts'),
 }
 
 const extensions = ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json']
