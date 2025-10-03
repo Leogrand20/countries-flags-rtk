@@ -12,12 +12,13 @@ export const alias: Record<string, string> = {
   '@img': resolve(__dirname, 'src/shared/assets/img'),
   '@fonts': resolve(__dirname, 'src/shared/assets/fonts'),
   '@shared': resolve(__dirname, 'src/shared'),
-  '@app': resolve(__dirname, 'src/app'),
-  '@components': resolve(__dirname, 'src/components'),
-  '@hooks': resolve(__dirname, 'src/hooks'),
-  '@layouts': resolve(__dirname, 'src/layouts'),
+  '@entities': resolve(__dirname, 'src/entities'),
+  '@features': resolve(__dirname, 'src/features'),
+  '@widgets': resolve(__dirname, 'src/widgets'),
   '@pages': resolve(__dirname, 'src/pages'),
+  '@components': resolve(__dirname, 'src/components'),
+  '@layouts': resolve(__dirname, 'src/layouts'),
   '@store': resolve(__dirname, 'src/store'),
+  '@hooks': resolve(__dirname, 'src/hooks'),
   '@utils': resolve(__dirname, 'src/utils'),
 }
-
